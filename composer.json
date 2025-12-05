@@ -27,7 +27,7 @@
     "extra": {
     	"laravel": {
       		"providers": [
-        		"JamesGifford\\LaravelArchitecture\\LaravelArchitectureServiceProvider"
+        		"JamesGifford\\LaravelArchitecture\\Providers\\LaravelArchitectureServiceProvider"
       		]
     	}
     }

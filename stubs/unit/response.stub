@@ -1,0 +1,21 @@
+<?php
+
+namespace {{ namespace }};
+
+use JamesGifford\LaravelArchitecture\Support\Transfers\AbstractTransfer;
+use JamesGifford\LaravelArchitecture\Support\Transfers\Contracts\ResponseTransferInterface;
+
+class {{ class }} extends AbstractTransfer implements ResponseTransferInterface
+{
+    public function __construct(
+        // TODO: add your response properties here
+        // public readonly bool $success = true,
+    ) {}
+
+    public static function build(mixed ...$input): static
+    {
+        // TODO: implement your self-building logic here.
+        // For now, just return a default instance.
+        return new static();
+    }
+}

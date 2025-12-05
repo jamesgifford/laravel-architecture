@@ -1,10 +1,10 @@
 <?php
 
-namespace JamesGifford\LaravelArchitecture\Support\Transfers\Concerns;
+namespace JamesGifford\LaravelArchitecture\Support\Directors;
 
-use JamesGifford\LaravelArchitecture\Support\Transfers\Contracts\RequestTransferInterface;
-use JamesGifford\LaravelArchitecture\Support\Transfers\Contracts\ResponseTransferInterface;
 use InvalidArgumentException;
+use JamesGifford\LaravelArchitecture\Support\Transfers\RequestTransferInterface;
+use JamesGifford\LaravelArchitecture\Support\Transfers\ResponseTransferInterface;
 use RuntimeException;
 
 /**
@@ -100,9 +100,18 @@ trait BuildsTransfers
             ? $fqcn
             : substr($fqcn, $lastSeparatorPosition + 1);
 
-        $transferClassName = sprintf('%s%s%s',
-            ($namespace ? $namespace . '\\' : ''),
-            $shortName,
+        // Remove the last StudlyCase "word" (e.g. "Director" from "MakeControllerUnitDirector")
+        $baseName = preg_replace('/[A-Z][^A-Z]*$/', '', $shortName);
+
+        // If, for some reason, nothing matched, fall back to the original short name
+        if ($baseName === $shortName || $baseName === '') {
+            $baseName = $shortName;
+        }
+
+        $transferClassName = sprintf(
+            '%s%s%s',
+            $namespace ? $namespace . '\\' : '',
+            $baseName,
             $suffix,
         );
 

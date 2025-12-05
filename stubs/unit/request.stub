@@ -1,0 +1,21 @@
+<?php
+
+namespace {{ namespace }};
+
+use JamesGifford\LaravelArchitecture\Support\Transfers\AbstractTransfer;
+use JamesGifford\LaravelArchitecture\Support\Transfers\Contracts\RequestTransferInterface;
+
+class {{ class }} extends AbstractTransfer implements RequestTransferInterface
+{
+    public function __construct(
+        // TODO: add your request properties here
+        // public readonly ?int $id = null,
+    ) {}
+
+    public static function build(mixed ...$input): static
+    {
+        // TODO: implement your self-building logic here.
+        // For now, just call the constructor with no arguments.
+        return new static();
+    }
+}

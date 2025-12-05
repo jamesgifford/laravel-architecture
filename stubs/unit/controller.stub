@@ -1,0 +1,33 @@
+<?php
+
+namespace {{ namespace }};
+
+use JamesGifford\LaravelArchitecture\Support\Controllers\Controller;
+use JamesGifford\LaravelArchitecture\Support\Directors\Concerns\DirectsUnit;
+use JamesGifford\LaravelArchitecture\Support\Transfers\Contracts\RequestTransferInterface;
+use JamesGifford\LaravelArchitecture\Support\Transfers\Contracts\ResponseTransferInterface;
+
+class {{ class }} extends Controller
+{
+    use DirectsUnit;
+
+    /**
+     * Handle the request for the {{ unit }} unit.
+     *
+     * @param  RequestTransferInterface  $request
+     * @return ResponseTransferInterface
+     */
+    protected function handle(RequestTransferInterface $request): ResponseTransferInterface
+    {
+        // TODO: Implement your Controller logic here.
+        // You can:
+        // - Use $request as your {{ unit }}Request transfer
+        // - Perform domain work
+        // - Return a {{ unit }}Response transfer
+
+        // Example (once you have a specific transfer type):
+        // \assert($request instanceof {{ unit }}Request);
+
+        return $this->buildResponse();
+    }
+}

@@ -1,14 +1,11 @@
 <?php
 
-namespace JamesGifford\LaravelArchitecture\Support\Transfers\Abstracts;
+namespace JamesGifford\LaravelArchitecture\Support\Transfers;
 
-use JamesGifford\LaravelArchitecture\Support\Transfers\Concerns\ResolvesBuildersByAttributes;
-use JamesGifford\LaravelArchitecture\Support\Transfers\Concerns\ResolvesBuildersByPattern;
-use JamesGifford\LaravelArchitecture\Support\Transfers\Contracts\TransferInterface;
-use JamesGifford\LaravelArchitecture\Support\Utilities\SerializeUtility;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use InvalidArgumentException;
+use JamesGifford\LaravelArchitecture\Support\Utilities\SerializeUtility;
 
 abstract class AbstractTransfer implements TransferInterface
 {
@@ -22,7 +19,7 @@ abstract class AbstractTransfer implements TransferInterface
         // Attempt finding a builder based on attributes
         $builder = static::resolveBuilderFromAttributes($input);
 
-        // As a fallback, attempt finding a builder based on input pattern
+        // As a fallback, attempt finding a builder based on the input pattern
         if (empty($builder)) {
             $builder = static::resolveBuilderFromPattern($input);
         }

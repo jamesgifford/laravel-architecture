@@ -1,6 +1,6 @@
 <?php
 
-namespace JamesGifford\LaravelArchitecture\Support\Transfers\Concerns;
+namespace JamesGifford\LaravelArchitecture\Support\Transfers;
 
 use JamesGifford\LaravelArchitecture\Support\Utilities\NormalizeUtility;
 

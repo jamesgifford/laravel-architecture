@@ -6,12 +6,12 @@ use Illuminate\Console\Command;
 
 class TestCommand extends Command
 {
-    protected $signature = 'jg:test';
-    protected $description = 'Test that the James Gifford Laravel Architecture package is installed correctly.';
+    protected $signature = 'laravel-architecture:test';
+    protected $description = 'Test that the Laravel Architecture package by James Gifford is installed correctly.';
 
     public function handle(): int
     {
-        $this->info('James Gifford Laravel Architecture package is wired in and responding.');
+        $this->info('Laravel Architecture package by James Gifford is wired in and responding.');
 
         return self::SUCCESS;
     }
