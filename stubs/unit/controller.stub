@@ -3,9 +3,9 @@
 namespace {{ namespace }};
 
 use JamesGifford\LaravelArchitecture\Support\Controllers\Controller;
-use JamesGifford\LaravelArchitecture\Support\Directors\Concerns\DirectsUnit;
-use JamesGifford\LaravelArchitecture\Support\Transfers\Contracts\RequestTransferInterface;
-use JamesGifford\LaravelArchitecture\Support\Transfers\Contracts\ResponseTransferInterface;
+use JamesGifford\LaravelArchitecture\Support\Directors\DirectsUnit;
+use JamesGifford\LaravelArchitecture\Support\Transfers\RequestTransferInterface;
+use JamesGifford\LaravelArchitecture\Support\Transfers\ResponseTransferInterface;
 
 class {{ class }} extends Controller
 {

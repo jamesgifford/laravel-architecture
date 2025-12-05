@@ -111,7 +111,7 @@ abstract class CreateUnitDirector extends Director
 
     protected function getStub(string $name): string
     {
-        $stubPath = __DIR__.'/../../../../stubs/'. $name . '.stub';
+        $stubPath = __DIR__.'/../../../stubs/'. $name . '.stub';
 
         if (! $this->files->exists($stubPath)) {
             throw new RuntimeException(sprintf('Stub not found: %s', $stubPath));
