@@ -1,6 +1,6 @@
 <?php
 
-namespace JamesGifford\LaravelArchitecture\Support\Transfers;
+namespace JamesGifford\LaravelArchitecture\Support\Transfers\Traits;
 
 use JamesGifford\LaravelArchitecture\Support\Transfers\Attributes\BuildsFrom;
 use JamesGifford\LaravelArchitecture\Support\Utilities\NormalizeUtility;

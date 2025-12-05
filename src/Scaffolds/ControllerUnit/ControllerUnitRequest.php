@@ -1,12 +1,12 @@
 <?php
 
-namespace JamesGifford\LaravelArchitecture\Scaffolds\CreateControllerUnit;
+namespace JamesGifford\LaravelArchitecture\Scaffolds\ControllerUnit;
 
-use JamesGifford\LaravelArchitecture\Support\Transfers\AbstractRequestTransfer;
+use JamesGifford\LaravelArchitecture\Support\Transfers\RequestTransferAbstract;
 use JamesGifford\LaravelArchitecture\Support\Transfers\Attributes\BuildsFrom;
 use JamesGifford\LaravelArchitecture\Support\Transfers\RequestTransferInterface;
 
-final class CreateControllerUnitRequest extends AbstractRequestTransfer implements RequestTransferInterface
+final class ControllerUnitRequest extends RequestTransferAbstract implements RequestTransferInterface
 {
     public function __construct(
         public readonly string $name,

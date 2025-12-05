@@ -2,20 +2,26 @@
 
 namespace {{ namespace }};
 
-use JamesGifford\LaravelArchitecture\Support\Transfers\AbstractTransfer;
-use JamesGifford\LaravelArchitecture\Support\Transfers\Contracts\RequestTransferInterface;
+use JamesGifford\LaravelArchitecture\Support\Transfers\Attributes\BuildsFrom;
+use JamesGifford\LaravelArchitecture\Support\Transfers\RequestTransferAbstract;
+use JamesGifford\LaravelArchitecture\Support\Transfers\RequestTransferInterface;
 
-class {{ class }} extends AbstractTransfer implements RequestTransferInterface
+class {{ class }} extends RequestTransferAbstract implements RequestTransferInterface
 {
     public function __construct(
         // TODO: add your request properties here
-        // public readonly ?int $id = null,
+        public readonly string $name,
+        public readonly string $description,
     ) {}
 
-    public static function build(mixed ...$input): static
+    // TODO: Optional: build Request from available input
+    #[BuildsFrom(['string', 'string'])]
+    public static function buildFromStrings(string $name, string $description): static
     {
-        // TODO: implement your self-building logic here.
-        // For now, just call the constructor with no arguments.
-        return new static();
+        // TODO: Implement self-building logic here.
+        return new static(
+            name: $name,
+            description: $description,
+        );
     }
 }

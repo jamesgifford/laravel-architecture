@@ -2,4 +2,4 @@
 
 namespace JamesGifford\LaravelArchitecture\Support\Controllers;
 
-abstract class Controller {}
+abstract class ControllerAbstract {}

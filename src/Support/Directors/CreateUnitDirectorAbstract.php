@@ -10,9 +10,9 @@ use RuntimeException;
 /**
  * Base Director for "create a unit" operations.
  *
- * @template-extends Director<RequestTransferInterface, ResponseTransferInterface>
+ * @template-extends DirectorAbstract<RequestTransferInterface, ResponseTransferInterface>
  */
-abstract class CreateUnitDirector extends Director
+abstract class CreateUnitDirectorAbstract extends DirectorAbstract
 {
     public function __construct(
         protected Filesystem $files,

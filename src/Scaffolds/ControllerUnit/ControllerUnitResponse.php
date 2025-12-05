@@ -1,11 +1,11 @@
 <?php
 
-namespace JamesGifford\LaravelArchitecture\Scaffolds\CreateControllerUnit;
+namespace JamesGifford\LaravelArchitecture\Scaffolds\ControllerUnit;
 
-use JamesGifford\LaravelArchitecture\Support\Transfers\AbstractTransfer;
+use JamesGifford\LaravelArchitecture\Support\Transfers\TransferAbstract;
 use JamesGifford\LaravelArchitecture\Support\Transfers\ResponseTransferInterface;
 
-final class CreateControllerUnitResponse extends AbstractTransfer implements ResponseTransferInterface
+final class ControllerUnitResponse extends TransferAbstract implements ResponseTransferInterface
 {
     public function __construct(
         public readonly string $unitName,

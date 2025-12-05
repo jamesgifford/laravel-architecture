@@ -1,6 +1,6 @@
 <?php
 
-namespace JamesGifford\LaravelArchitecture\Support\Directors;
+namespace JamesGifford\LaravelArchitecture\Support\Directors\Traits;
 
 use InvalidArgumentException;
 use JamesGifford\LaravelArchitecture\Support\Transfers\RequestTransferInterface;

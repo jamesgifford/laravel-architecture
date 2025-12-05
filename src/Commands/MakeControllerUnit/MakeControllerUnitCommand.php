@@ -2,10 +2,10 @@
 
 namespace JamesGifford\LaravelArchitecture\Commands\MakeControllerUnit;
 
-use JamesGifford\LaravelArchitecture\Scaffolds\CreateControllerUnit\CreateControllerUnitScaffold;
-use JamesGifford\LaravelArchitecture\Support\Commands\Command;
+use JamesGifford\LaravelArchitecture\Scaffolds\ControllerUnit\ControllerUnitScaffold;
+use JamesGifford\LaravelArchitecture\Support\Commands\CommandAbstract;
 
-class MakeControllerUnitCommand extends Command
+class MakeControllerUnitCommand extends CommandAbstract
 {
     // TODO: Make type optional
     // TODO: Enforce set values for type (page, data, fragment)
@@ -13,7 +13,7 @@ class MakeControllerUnitCommand extends Command
     protected $description = 'Create a Controller Unit';
 
     public function __construct(
-        protected CreateControllerUnitScaffold $scaffold,
+        protected ControllerUnitScaffold $scaffold,
     ) {
         parent::__construct();
     }

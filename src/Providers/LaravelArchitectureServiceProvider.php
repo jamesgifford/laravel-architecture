@@ -6,7 +6,7 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
 use JamesGifford\LaravelArchitecture\Commands\MakeControllerUnit\MakeControllerUnitCommand;
 use JamesGifford\LaravelArchitecture\Commands\TestCommand;
-use JamesGifford\LaravelArchitecture\Scaffolds\CreateControllerUnit\CreateControllerUnitScaffold;
+use JamesGifford\LaravelArchitecture\Scaffolds\ControllerUnit\ControllerUnitScaffold;
 
 class LaravelArchitectureServiceProvider extends ServiceProvider
 {
@@ -15,8 +15,8 @@ class LaravelArchitectureServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(CreateControllerUnitScaffold::class, function ($app) {
-            return new CreateControllerUnitScaffold(
+        $this->app->singleton(ControllerUnitScaffold::class, function ($app) {
+            return new ControllerUnitScaffold(
                 files: new Filesystem(),
                 rootNamespace: $app->getNamespace(),
             );

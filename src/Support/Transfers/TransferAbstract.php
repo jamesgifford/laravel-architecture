@@ -5,9 +5,11 @@ namespace JamesGifford\LaravelArchitecture\Support\Transfers;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use InvalidArgumentException;
+use JamesGifford\LaravelArchitecture\Support\Transfers\Traits\ResolvesBuildersByAttributes;
+use JamesGifford\LaravelArchitecture\Support\Transfers\Traits\ResolvesBuildersByPattern;
 use JamesGifford\LaravelArchitecture\Support\Utilities\SerializeUtility;
 
-abstract class AbstractTransfer implements TransferInterface
+abstract class TransferAbstract implements TransferInterface
 {
     use ResolvesBuildersByAttributes, ResolvesBuildersByPattern;
 

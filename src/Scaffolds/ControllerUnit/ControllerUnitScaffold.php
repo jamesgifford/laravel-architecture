@@ -1,22 +1,22 @@
 <?php
 
-namespace JamesGifford\LaravelArchitecture\Scaffolds\CreateControllerUnit;
+namespace JamesGifford\LaravelArchitecture\Scaffolds\ControllerUnit;
 
 use Illuminate\Support\Str;
-use JamesGifford\LaravelArchitecture\Support\Directors\CreateUnitDirector;
+use JamesGifford\LaravelArchitecture\Support\Directors\CreateUnitDirectorAbstract;
 use JamesGifford\LaravelArchitecture\Support\Transfers\RequestTransferInterface;
 use JamesGifford\LaravelArchitecture\Support\Transfers\ResponseTransferInterface;
 
 /**
  * Director that creates a Controller Unit on disk.
  *
- * @template-extends CreateUnitDirector<CreateControllerUnitRequest, CreateControllerUnitResponse>
+ * @template-extends CreateUnitDirectorAbstract<ControllerUnitRequest, ControllerUnitResponse>
  */
-class CreateControllerUnitScaffold extends CreateUnitDirector
+class ControllerUnitScaffold extends CreateUnitDirectorAbstract
 {
     /**
-     * @param  CreateControllerUnitRequest $request
-     * @return CreateControllerUnitResponse
+     * @param  ControllerUnitRequest $request
+     * @return ControllerUnitResponse
      */
     protected function handle(RequestTransferInterface $request): ResponseTransferInterface
     {
@@ -79,7 +79,7 @@ class CreateControllerUnitScaffold extends CreateUnitDirector
             $createdResponse = true;
         }
 
-        return CreateControllerUnitResponse::build(
+        return ControllerUnitResponse::build(
             unitName: $unitName,
             unitPath: $unitPath,
             createdDirector: $createdDirector,

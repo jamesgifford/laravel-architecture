@@ -2,20 +2,26 @@
 
 namespace {{ namespace }};
 
-use JamesGifford\LaravelArchitecture\Support\Transfers\AbstractTransfer;
-use JamesGifford\LaravelArchitecture\Support\Transfers\Contracts\ResponseTransferInterface;
+use JamesGifford\LaravelArchitecture\Support\Transfers\Attributes\BuildsFrom;
+use JamesGifford\LaravelArchitecture\Support\Transfers\ResponseTransferAbstract;
+use JamesGifford\LaravelArchitecture\Support\Transfers\ResponseTransferInterface;
 
-class {{ class }} extends AbstractTransfer implements ResponseTransferInterface
+class {{ class }} extends ResponseTransferAbstract implements ResponseTransferInterface
 {
     public function __construct(
         // TODO: add your response properties here
-        // public readonly bool $success = true,
+        public readonly string $name,
+        public readonly string $description,
     ) {}
 
-    public static function build(mixed ...$input): static
+    // TODO: Optional: build Response from available input
+    #[BuildsFrom(['string', 'string'])]
+    public static function buildFromStrings(string $name, string $description): static
     {
-        // TODO: implement your self-building logic here.
-        // For now, just return a default instance.
-        return new static();
+        // TODO: Implement self-building logic here.
+        return new static(
+            name: $name,
+            description: $description,
+        );
     }
 }
