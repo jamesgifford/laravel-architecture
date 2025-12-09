@@ -2,6 +2,7 @@
 
 namespace JamesGifford\LaravelArchitecture\Support\Directors\Traits;
 
+use BadMethodCallException;
 use InvalidArgumentException;
 use JamesGifford\LaravelArchitecture\Support\Transfers\RequestTransferInterface;
 use JamesGifford\LaravelArchitecture\Support\Transfers\ResponseTransferInterface;
@@ -40,6 +41,10 @@ trait DirectsUnit
             );
         }
 
+        if (! method_exists($this, 'handle')) {
+            throw new BadMethodCallException('The handle method must be defined in the Unit Director.');
+        }
+
         // Execute the logic and get the Response Transfer.
         $response = $this->handle($request);
 
@@ -52,12 +57,4 @@ trait DirectsUnit
 
         return $response;
     }
-
-    /**
-     * Carry out the Unit's purpose.
-     *
-     * @param  RequestTransferInterface  $request
-     * @return ResponseTransferInterface
-     */
-    abstract protected function handle(RequestTransferInterface $request): ResponseTransferInterface;
 }

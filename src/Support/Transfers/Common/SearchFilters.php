@@ -1,13 +1,13 @@
 <?php
 
-namespace JamesGifford\LaravelArchitecture\Support\Queries\Transfers;
+namespace JamesGifford\LaravelArchitecture\Support\Transfers\Common;
 
 use Illuminate\Http\Request;
 use JamesGifford\LaravelArchitecture\Support\Queries\Constants\SearchQuery;
 use JamesGifford\LaravelArchitecture\Support\Transfers\Attributes\BuildsFrom;
 use JamesGifford\LaravelArchitecture\Support\Transfers\TransferAbstract;
 
-class SearchFilters extends TransferAbstract
+final class SearchFilters extends TransferAbstract
 {
     private const DEFAULTS = [
         'search' => '',

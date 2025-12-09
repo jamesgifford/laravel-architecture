@@ -5,6 +5,7 @@ namespace JamesGifford\LaravelArchitecture\Support\Directors\Traits;
 use InvalidArgumentException;
 use JamesGifford\LaravelArchitecture\Support\Transfers\RequestTransferInterface;
 use JamesGifford\LaravelArchitecture\Support\Transfers\ResponseTransferInterface;
+use ReflectionClass;
 use RuntimeException;
 
 /**
@@ -83,53 +84,46 @@ trait BuildsTransfers
     }
 
     /**
-     * Infer Transfer FQCN from the processor FQCN + suffix.
-     * Defaults to the SAME namespace as the processor:
-     *   App\Foo\Bar\ProcessorClass -> App\Foo\Bar\ProcessorClassRequest.
-     * If not available will also look at:
-     *   App\Foo\Bar\Transfers\ProcessorClassRequest.
+     * Infer Transfer fully qualified class name from the namespace of the Director class.
+     * Transfer classes should have the same name as the Unit with the provided suffix.
+     * (eg: CreatePostDataHandler (director) -> CreatePostRequest (transfer)
      */
     protected static function inferTransferClass(string $suffix): string
     {
-        $fqcn = static::class;
-        $lastSeparatorPosition = strrpos($fqcn, '\\');
-        $namespace = $lastSeparatorPosition === false
+        $directorFullyQualifiedClassName = get_called_class();
+        $lastSeparatorPosition = strrpos($directorFullyQualifiedClassName, '\\');
+        $directorNamespace = $lastSeparatorPosition === false
             ? ''
-            : substr($fqcn, 0, $lastSeparatorPosition);
-        $shortName = $lastSeparatorPosition === false
-            ? $fqcn
-            : substr($fqcn, $lastSeparatorPosition + 1);
+            : substr($directorFullyQualifiedClassName, 0, $lastSeparatorPosition);
 
-        // Remove the last StudlyCase "word" (e.g. "Director" from "MakeControllerUnitDirector")
-        $baseName = preg_replace('/[A-Z][^A-Z]*$/', '', $shortName);
-
-        // If, for some reason, nothing matched, fall back to the original short name
-        if ($baseName === $shortName || $baseName === '') {
-            $baseName = $shortName;
+        if (empty($directorNamespace)) {
+            throw new RuntimeException("Unable to infer namespace for [$directorFullyQualifiedClassName].");
         }
 
-        $transferClassName = sprintf(
-            '%s%s%s',
-            $namespace ? $namespace . '\\' : '',
-            $baseName,
+        // The last segment of the namespace should be the unit name
+        $unitName = substr($directorNamespace, strrpos($directorNamespace, '\\') + 1);
+
+        if (empty($unitName)) {
+            throw new RuntimeException("Unable to infer unit name for [$directorFullyQualifiedClassName].");
+        }
+
+        $transferFullyQualifiedClassName = sprintf(
+            '%s\%s%s',
+            $directorNamespace,
+            $unitName,
             $suffix,
         );
 
-        if (class_exists($transferClassName)) {
-            return $transferClassName;
+        if (class_exists($transferFullyQualifiedClassName)) {
+            return $transferFullyQualifiedClassName;
         }
 
-        // As a backup, try the Transfers namespace
-        $transferClassName = sprintf('%s%s%s',
-            ($namespace ? $namespace . '\\Transfers\\' : 'Transfers\\'),
-            $shortName,
-            $suffix,
+        throw new RuntimeException(
+            sprintf(
+                'Transfer class [%s] not found for [%s].',
+                $transferFullyQualifiedClassName,
+                $directorFullyQualifiedClassName,
+            )
         );
-
-        if (class_exists($transferClassName)) {
-            return $transferClassName;
-        }
-
-        throw new RuntimeException("Transfer class not found: {$transferClassName}");
     }
 }

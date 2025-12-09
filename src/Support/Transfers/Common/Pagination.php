@@ -1,11 +1,11 @@
 <?php
 
-namespace JamesGifford\LaravelArchitecture\Support\Queries\Transfers;
+namespace JamesGifford\LaravelArchitecture\Support\Transfers\Common;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use JamesGifford\LaravelArchitecture\Support\Transfers\TransferAbstract;
 
-class Pagination extends TransferAbstract
+final class Pagination extends TransferAbstract
 {
     /** @param array<int, object> $items */
     public function __construct(
